@@ -20,6 +20,8 @@ It's really dependent on Whisper's performance as well, which isn't always perfe
 
 The pretrained dictionaries for MFA are often lackluster and/or inaccurate when transposed to singing, which affects the label quality (I've particularly noticed this with French).
 
+It's possible to supplement the dictionaries with G2P models, but I haven't implemented that.
+
 # Advantages over SOFA
 The main advantage, of course, is much much wider language support compared to MFA.
 
