@@ -8,7 +8,7 @@ parser.add_argument('-c', '--converter', type=str, required=True, help="Path to 
 args = parser.parse_args()
 
 use_converter = True  # Enable converter usage
-low_number = False  # Remove numbers and transform text to lowercase
+low_number = True  # Remove numbers and transform text to lowercase
 
 # Open, read and store info for conversion
 with open(args.converter, 'r', encoding='utf-8') as converter_file:
