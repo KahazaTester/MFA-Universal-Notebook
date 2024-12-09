@@ -57,10 +57,10 @@ The pretrained dictionaries for MFA are often lackluster and/or inaccurate when 
 It's possible to supplement the dictionaries with G2P models, but I haven't implemented that.
 
 # Advantages over SOFA
-The main advantage, of course, is much much wider language support compared to MFA.
+The main advantage is much much wider language support compared to MFA.
 
-The other advantage is that it tends to align much more precisely than SOFA does; whereas SOFA tries it's best to guess and is generally correct, MFA is very accurate when the aforementioned issues aren't present.
+The other advantage is that it tends to align much more precisely than SOFA does; whereas SOFA tries it's best to guess and is approximately correct, MFA is very accurate when the aforementioned issues aren't present.
 
-Of course, MFA's forte is speech, so it will also work very well for speech or rapping.
+MFA's forte is speech, so it will also work very well for speech or rapping.
 
 If you have a large enough dataset, it's possible to train your own MFA model without any labeled data: that is beyond the scope of this notebook, but if there's any interest I could try making a training notebook in the future.
