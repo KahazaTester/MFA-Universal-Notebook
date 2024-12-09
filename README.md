@@ -41,8 +41,11 @@ phonemetobereplaced,replacementphoneme
 For example, if you wanna make a converter that turns all characters lowercase, it will be like this:
 
 A,a
+
 B,b
+
 C,c
+
 etc...
 
 Lastly, there's an additional step for added compatibility specifically for Italian, otherwise you can just skip to the 'Zip output' step. If you've previously used the 'slice_samples' option, you should also check the 'save_samples' option.
