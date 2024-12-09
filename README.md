@@ -13,6 +13,7 @@ To check if this notebook will work for your language.
 
 # How to use
 Click on MFA_Notebook.ipynb to open the notebook, then on ![image](https://github.com/user-attachments/assets/d77dc07d-0251-49d7-93c0-3a45d94db28a)
+
 You will be redirected to Google Colab (you will need a Google account to use it).
 
 *Before proceeding, it is highly recommended you use Google Drive to store your files.*
@@ -25,6 +26,7 @@ If you already have text transcriptions for your dataset, then you can skip all 
 Whisper is used to generate transcriptions automatically for your dataset: install it and run the 'Whisper inference' step (please note the transcriptions aren't always accurate and it's generally best to edit them before starting the aligning process).
 
 For the MFA steps, make sure to follow the instructions on the notebook and choose the acoustic and dictionary models of your liking on the MFA website. You will find the name of your models by choosing the language you prefer, then scrolling down on the model's page to 'Installation'.
+
 ![image](https://github.com/user-attachments/assets/1a5ebdfa-6907-4ed7-be21-71d54318a08d)
 
 In this case, the name to put in will be 'spanish_mfa' (acoustic model).
