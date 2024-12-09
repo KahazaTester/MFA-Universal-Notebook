@@ -40,13 +40,7 @@ phonemetobereplaced,replacementphoneme
 
 For example, if you wanna make a converter that turns all characters lowercase, it will be like this:
 
-A,a
-
-B,b
-
-C,c
-
-etc...
+A,a<br>B,b<br>C,c<br>etc...
 
 Lastly, there's an additional step for added compatibility specifically for Italian, otherwise you can just skip to the 'Zip output' step. If you've previously used the 'slice_samples' option, you should also check the 'save_samples' option.
 Choose the path you most prefer (I personally recommend something like /content/drive/MyDrive/MFA_output) and make sure there's no '/' at the end! There you will find zip files containing your samples and labels.
