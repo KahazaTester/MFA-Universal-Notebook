@@ -11,6 +11,43 @@ https://mfa-models.readthedocs.io/en/latest/
 
 To check if this notebook will work for your language.
 
+# How to use
+Click on MFA_Notebook.ipynb to open the notebook, then on ![image](https://github.com/user-attachments/assets/d77dc07d-0251-49d7-93c0-3a45d94db28a)
+You will be redirected to Google Colab (you will need a Google account to use it).
+
+*Before proceeding, it is highly recommended you use Google Drive to store your files.*
+
+Upload your dataset to Drive in a .zip file containing nothing but your .wav files.
+
+Afterwards, follow the notebook steps, pointing to /content/drive/MyDrive/nameofzipfile.zip. If your samples are longer than approx. 30 seconds, you should check 'slice_samples', otherwise leave it unchecked.
+If you already have text transcriptions for your dataset, then you can skip all the Whisper related steps and just upload your transcriptions in zip file on Drive and use the "(Optional) Unzip edited transcriptions" button.
+
+Whisper is used to generate transcriptions automatically for your dataset: install it and run the 'Whisper inference' step (please note the transcriptions aren't always accurate and it's generally best to edit them before starting the aligning process).
+
+For the MFA steps, make sure to follow the instructions on the notebook and choose the acoustic and dictionary models of your liking on the MFA website. You will find the name of your models by choosing the language you prefer, then scrolling down on the model's page to 'Installation'.
+![image](https://github.com/user-attachments/assets/1a5ebdfa-6907-4ed7-be21-71d54318a08d)
+
+In this case, the name to put in will be 'spanish_mfa' (acoustic model).
+
+The next step will be to convert the TextGrid files MFA outputs into monophonic HTS .lab files that DiffSinger can utilize. You can do so by following the next steps, but be mindful of the converter you choose.
+If your language is already in the dropdown menu, then you're all set! Otherwise, you'll have to make your own custom converter; that is because most MFA models are set up to use some form of IPA in their alignment, which does not work for DiffSinger.
+
+To make your own custom converter, please check the MFA page for the dictionary model you're using for a list of all the phonemes present in said model. You will then make a file called 'custom_converter.txt' and it will be structured as follows:
+
+phonemetobereplaced,replacementphoneme
+
+For example, if you wanna make a converter that turns all characters lowercase, it will be like this:
+
+A,a
+B,b
+C,c
+etc...
+
+Lastly, there's an additional step for added compatibility specifically for Italian, otherwise you can just skip to the 'Zip output' step. If you've previously used the 'slice_samples' option, you should also check the 'save_samples' option.
+Choose the path you most prefer (I personally recommend something like /content/drive/MyDrive/MFA_output) and make sure there's no '/' at the end! There you will find zip files containing your samples and labels.
+
+Currently there's no step for saving TextGrid labels as opposed to HTS labels, as this is meant for DiffSinger users, but feel free to make your own.
+
 # Known issues
 It really struggles with long silences, long notes and humming.
 
