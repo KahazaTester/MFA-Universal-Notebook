@@ -1,5 +1,5 @@
 # MFA-Universal-Notebook
-Huge thanks to PixPrucer and HAI-D for making the original notebook and script, I just updated it to the latest MFA version and added a menu to choose any compatible language!
+Huge thanks to PixPrucer and HAI-D for making the original notebook and script, I just updated it to the latest MFA version and added a menu to choose any compatible language.
 
 Remember to cut up your samples in smaller bits before uploading them OR use the inbuilt slicer, MFA hates long samples!
 
