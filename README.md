@@ -47,6 +47,9 @@ Choose the path you most prefer (I personally recommend something like /content/
 
 Currently there's no step for saving TextGrid labels as opposed to HTS labels, as this is meant for DiffSinger users, but feel free to make your own.
 
+# UTAU Converters
+I've uploaded a few experimental notebooks to convert UTAU banks into datasets for DiffSinger.
+From what I've tested, I've only gotten good results with the Arpasing converter.
 # Known issues
 It really struggles with long silences, long notes and humming.
 
