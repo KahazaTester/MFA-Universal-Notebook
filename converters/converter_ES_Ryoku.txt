@@ -32,6 +32,7 @@ g,g
 d,d
 p,p
 k,k
+é¾,r
 t,t
 t̪,t
 t͡ʃ,tS
