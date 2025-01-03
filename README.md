@@ -1,69 +1,111 @@
-# MFA-Universal-Notebook
-Huge thanks to PixPrucer and HAI-D for making the original notebook and script, I just updated it to the latest MFA version and added a menu to choose any compatible language.
+### [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/) Universal Notebook
+___
+#### Huge thanks to *PixPrucer* and *HAI-D* for making the original notebook and script, I just updated it to the latest MFA version and added a menu to choose any compatible language.
+___
 
-Remember to cut up your samples in smaller bits before uploading them OR use the inbuilt slicer, MFA hates long samples!
+*Remember to cut up your samples in smaller bits before uploading them OR use the inbuilt slicer, MFA hates long samples!*
 
-Please refer to this:
-https://github.com/openai/whisper
+**Please refer to this:** <br>
+https://github.com/openai/whisper <br>
+https://mfa-models.readthedocs.io/en/latest/ <br>
+**To check if this notebook will work for your language.**
 
-And this:
-https://mfa-models.readthedocs.io/en/latest/
+## How to use
 
-To check if this notebook will work for your language.
-
-# How to use
-Click on MFA_Notebook.ipynb to open the notebook, then on ![image](https://github.com/user-attachments/assets/d77dc07d-0251-49d7-93c0-3a45d94db28a)
-
-You will be redirected to Google Colab (you will need a Google account to use it).
+### MFA Universal Notebook: <a href="https://colab.research.google.com/github/gnloop/MFA-Universal-Notebook/blob/slicer/MFA_Notebook.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="width: 120px;"/> </a>
 
 *Before proceeding, it is highly recommended you use Google Drive to store your files.*
 
-Upload your dataset to Drive in a .zip file containing nothing but your .wav files.
+**1. Preparing Your Audio Files**
 
-Afterwards, follow the notebook steps, pointing to /content/drive/MyDrive/nameofzipfile.zip. If your samples are longer than approx. 30 seconds, you should check 'slice_samples', otherwise leave it unchecked.
-If you already have text transcriptions for your dataset, then you can skip all the Whisper related steps and just upload your transcriptions in zip file on Drive and use the "(Optional) Unzip edited transcriptions" button.
+Upload your dataset to Drive in a .zip file containing nothing but your .wav files:
+<pre>
+# EXAMPLE:
+wav.zip:
+    |
+    |
+    audio_1.wav
+    audio_2.wav
+    audio_3.wav
+    ...
+</pre>
 
-Whisper is used to generate transcriptions automatically for your dataset: install it and run the 'Whisper inference' step (please note the transcriptions aren't always accurate and it's generally best to edit them before starting the aligning process).
+Follow the steps in the notebook, making sure to point it to the location of your zipped audio files (e.g., `/content/drive/MyDrive/YourZipFile.zip`). **If your audio samples are longer than about 30 seconds each, tick the ***'slice_samples'*** checkbox**. Otherwise, leave it unchecked.
 
-For the MFA steps, make sure to follow the instructions on the notebook and choose the acoustic and dictionary models of your liking on the MFA website. You will find the name of your models by choosing the language you prefer, then scrolling down on the model's page to 'Installation'.
+**2. Handling Transcriptions**
+
+**If you already have text transcriptions for your dataset,** you can skip the Whisper steps! Just upload your transcriptions as a zip file to Google Drive and run the ***"(Optional) Unzip edited transcriptions"*** cell in the notebook.
+
+If you don't have transcriptions, don't worry! Whisper can automatically generate them for you. Install it and run the ***'Whisper inference'*** cell. Keep in mind that Whisper's transcriptions aren't always perfect, so it's a good idea to review and edit them before moving on to the alignment process.
+
+**3. Aligning with MFA**
+
+For the MFA steps, carefully follow the instructions in the notebook. You'll need to choose the appropriate acoustic and dictionary models for your language from the MFA website.
+
+To find the model names:
+
+1. Go to the [MFA Website](https://mfa-models.readthedocs.io/en/latest/) and select your desired acoustic model/dictionary language.
+2. Scroll down on the model/dictionary page to the 'Installation' section.
+
+For instance, as shown in the image below, you'd use 'spanish\_mfa' for the Spanish acoustic model:
 
 ![image](https://github.com/user-attachments/assets/1a5ebdfa-6907-4ed7-be21-71d54318a08d)
 
-In this case, the name to put in will be 'spanish_mfa' (acoustic model).
+**4. Converting TextGrid to HTK Labels**
 
-The next step will be to convert the TextGrid files MFA outputs into monophonic HTS .lab files that DiffSinger can utilize. You can do so by following the next steps, but be mindful of the converter you choose.
-If your language is already in the dropdown menu, then you're all set! Otherwise, you'll have to make your own custom converter; that is because most MFA models are set up to use some form of IPA in their alignment, which does not work for DiffSinger.
+Next, you'll need to convert the TextGrid files (which MFA outputs) into monophonic HTK `.lab` files that DiffSinger can use. Follow the steps in the notebook, but be mindful of the converter you choose.
 
-To make your own custom converter, please check the MFA page for the dictionary model you're using for a list of all the phonemes present in said model. You will then make a file called 'custom_converter.txt' and it will be structured as follows:
+If your language is already in the dropdown menu, you're good to go! If not, you'll need to create a custom converter. This is because most MFA models use a custom form of IPA (International Phonetic Alphabet) in their alignment, which isn't compatible with DiffSinger.
 
-phonemetobereplaced,replacementphoneme
+**Creating a Custom Converter:**
 
-For example, if you wanna make a converter that turns all characters lowercase, it will be like this:
+1. Refer to the MFA page for your chosen dictionary model to get a list of all the phonemes it uses.
+2. Create a .txt file named `custom_converter.txt`.
+3. Structure the file as follows:
 
-A,a<br>B,b<br>C,c<br>etc...
+    ```
+    PhonemeToBeReplaced,ReplacementPhoneme
+    ```
 
-Lastly, there's an additional step for added compatibility specifically for Italian, otherwise you can just skip to the 'Zip output' step. If you've previously used the 'slice_samples' option, you should also check the 'save_samples' option.
-Choose the path you most prefer (I personally recommend something like /content/drive/MyDrive/MFA_output) and make sure there's no '/' at the end! There you will find zip files containing your samples and labels.
+    For example, to convert all characters to lowercase, your file would look like this:
 
-Currently there's no step for saving TextGrid labels as opposed to HTS labels, as this is meant for DiffSinger users, but feel free to make your own.
+    ```
+    A,a
+    B,b
+    C,c
+    ...and so on
+    ```
+     
+    You can see some examples of converters [here](https://github.com/gnloop/MFA-Universal-Notebook/tree/slicer/converters).
 
-# UTAU Converters
-I've uploaded a few experimental notebooks to convert UTAU banks into datasets for DiffSinger.
-From what I've tested, I've only gotten good results with the Arpasing converter.
-# Known issues
-It really struggles with long silences, long notes and humming.
+**5. (Optional) Italian-Specific Step**
 
-It's really dependent on Whisper's performance as well, which isn't always perfect: if you want a better base it's highly recommended to edit the transcriptions!
+There's an extra step specifically for Italian datasets to enhance compatibility. If you're working with Italian, follow this step. Otherwise, feel free to skip to the ***'Zip output'*** step. If you used the ***'slice_samples'*** option earlier, remember to also check the ***'save_samples'*** option here.
 
-The pretrained dictionaries for MFA are often lackluster and/or inaccurate when transposed to singing, which affects the label quality (I've particularly noticed this with French).
+**6. Saving Your Output**
 
-It's possible to supplement the dictionaries with G2P models, but I haven't implemented that.
+Choose your preferred output path (I recommend something like `/content/drive/MyDrive/MFA_output`). **Make sure there's no '/' at the end of the path!** This is where your zip files containing your processed samples and labels will be saved.
 
-# Advantages over SOFA
-The main advantage is much much wider language support compared to MFA.
+**Note:** Currently, there isn't an option to save TextGrid labels directly. This guide focuses on generating HTK labels for DiffSinger. However, you're welcome to adapt it to save TextGrid labels if needed.
 
-The other advantage is that it tends to align much more precisely than SOFA does; whereas SOFA tries it's best to guess and is approximately correct, MFA is very accurate when the aforementioned issues aren't present.
+## UTAU Converters (Experimental)
 
-MFA's forte is speech, so it will also work very well for speech or rapping.
+I've included [some experimental notebooks](https://github.com/gnloop/MFA-Universal-Notebook/tree/slicer/utau_conversion) to convert UTAU banks into datasets usable by DiffSinger. So far, I've only had good results with the Arpasing converter, but feel free to experiment.
 
-If you have a large enough dataset, it's possible to train your own MFA model without any labeled data: that is beyond the scope of this notebook, but if there's any interest I could try making a training notebook in the future.
+## Known Issues
+
+Here are a few things to keep in mind:
+
+*   It really struggles with long silences, long notes and humming.
+*   It's really dependent on Whisper's performance as well, which isn't always perfect: if you want a better base it's highly recommended to edit the transcriptions!
+*   The pretrained dictionaries for MFA are often lackluster and/or inaccurate when transposed to singing, which affects the label quality (I've particularly noticed this with French).
+*   It's possible to supplement the dictionaries with G2P models, but I haven't implemented that.
+
+## Advantages Over SOFA
+
+*   **Wider Language Support:** MFA supports a much broader range of languages compared to SOFA.
+*   **More Precise Alignment:** MFA generally provides more accurate alignments than SOFA. While SOFA makes educated guesses, MFA is very precise when the issues mentioned above aren't present.
+*   **Better with Speech:** Since MFA excels at speech processing, it works exceptionally well for spoken or rapped vocals.
+*   **Potential for Custom Model Training:** If you have a large enough dataset, you could even train your own MFA model without needing any labeled data! This is beyond the scope of this guide, but I might create a training notebook in the future if there's enough interest.
+
+---
