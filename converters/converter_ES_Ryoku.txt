@@ -41,7 +41,7 @@ m,m
 n,n
 ŋ,gn
 ɲ,nJ
-ɾ,r
+ɾ,4
 r,rr
 l,l
 ʎ,j
