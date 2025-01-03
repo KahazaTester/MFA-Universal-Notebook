@@ -26,6 +26,7 @@ x,x
 h,h
 θ,th
 ʃ,S
+tʃ,tS
 b,b
 g,g
 d,d
